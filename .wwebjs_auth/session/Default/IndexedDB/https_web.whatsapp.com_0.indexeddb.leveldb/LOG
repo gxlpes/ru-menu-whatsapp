@@ -1,0 +1,31 @@
+2023/11/23-08:26:29.551 44c9 Reusing MANIFEST /media/gxlpes/HD Linux/repos/ru-menu-whatsapp/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/11/23-08:26:29.551 44c9 Recovering log #387
+2023/11/23-08:26:29.551 44c9 Reusing old log /media/gxlpes/HD Linux/repos/ru-menu-whatsapp/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000387.log 
+2023/11/23-08:26:31.149 44ff Compacting 1@1 + 4@2 files
+2023/11/23-08:26:31.302 44ff Generated table #390@1: 85942 keys, 2233876 bytes
+2023/11/23-08:26:31.446 44ff Generated table #391@1: 36704 keys, 2287046 bytes
+2023/11/23-08:26:31.588 44ff Generated table #392@1: 34893 keys, 2202278 bytes
+2023/11/23-08:26:31.670 44ff Generated table #393@1: 22811 keys, 558242 bytes
+2023/11/23-08:26:31.670 44ff Compacted 1@1 + 4@2 files => 7281442 bytes
+2023/11/23-08:26:31.744 44ff compacted to: files[ 0 0 4 0 0 0 0 ]
+2023/11/23-08:26:31.744 44ff Delete type=2 #385
+2023/11/23-08:26:31.744 44ff Delete type=2 #382
+2023/11/23-08:26:31.744 44ff Delete type=2 #384
+2023/11/23-08:26:31.744 44ff Delete type=2 #383
+2023/11/23-08:26:31.744 44ff Delete type=2 #388
+2023/11/23-08:26:40.736 44ff Level-0 table #395: started
+2023/11/23-08:26:40.785 44ff Level-0 table #395: 10903 bytes OK
+2023/11/23-08:26:40.859 44ff Delete type=0 #387
+2023/11/23-08:26:40.859 44ff Manual compaction at level-0 from '\x00M\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00N\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/11/23-08:26:42.165 44fc Compacting 1@1 + 4@2 files
+2023/11/23-08:26:42.290 44fc Generated table #396@1: 85994 keys, 2234819 bytes
+2023/11/23-08:26:42.400 44fc Generated table #397@1: 36700 keys, 2286967 bytes
+2023/11/23-08:26:42.510 44fc Generated table #398@1: 34893 keys, 2202278 bytes
+2023/11/23-08:26:42.570 44fc Generated table #399@1: 22811 keys, 558242 bytes
+2023/11/23-08:26:42.570 44fc Compacted 1@1 + 4@2 files => 7282306 bytes
+2023/11/23-08:26:42.644 44fc compacted to: files[ 0 0 4 0 0 0 0 ]
+2023/11/23-08:26:42.644 44fc Delete type=2 #391
+2023/11/23-08:26:42.644 44fc Delete type=2 #392
+2023/11/23-08:26:42.644 44fc Delete type=2 #390
+2023/11/23-08:26:42.644 44fc Delete type=2 #393
+2023/11/23-08:26:42.644 44fc Delete type=2 #395
