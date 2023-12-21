@@ -1,7 +1,0 @@
-2023/11/23-08:24:42.651 42a0 Reusing MANIFEST /media/gxlpes/HD Linux/repos/ru-menu-whatsapp/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/11/23-08:24:42.651 42a0 Recovering log #380
-2023/11/23-08:24:42.679 42a0 Reusing old log /media/gxlpes/HD Linux/repos/ru-menu-whatsapp/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000380.log 
-2023/11/23-08:24:53.355 42a0 Level-0 table #388: started
-2023/11/23-08:24:53.449 42a0 Level-0 table #388: 564239 bytes OK
-2023/11/23-08:24:53.522 42a0 Delete type=0 #380
-2023/11/23-08:24:53.523 42a0 Manual compaction at level-0 from '\x00L\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00M\x00\x00\x00' @ 0 : 0; will stop at (end)

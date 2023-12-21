@@ -59,7 +59,7 @@ COPY . .
 ARG NODE_ENV=prod
 
 # Copy the appropriate environment file based on the environment
-COPY .env${NODE_ENV} .env
+COPY .env.${NODE_ENV} .env
 
 # Expose the port that the app will run on
 EXPOSE 3000
