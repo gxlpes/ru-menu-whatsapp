@@ -1,12 +1,21 @@
 {
+  "name": "baileys-integration-youtube",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "locally": "node -e \"console.log(require('./index').handler(require('./event.json')));\""
+  },
+  "author": "mohammed khan",
+  "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.456.0",
-    "dotenv": "^16.3.1",
+    "@whiskeysockets/baileys": "^6.3.1",
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
-    "mongoose": "^8.0.3",
-    "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.23.0",
-    "wwebjs-aws-s3": "^1.0.2",
-    "wwebjs-mongo": "^1.1.0"
+    "mongodb": "^5.8.1",
+    "mongoose": "^7.4.4",
+    "qrcode-terminal": "^0.12.0"
   }
 }

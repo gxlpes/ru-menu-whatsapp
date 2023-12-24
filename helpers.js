@@ -20,6 +20,17 @@ function getRuName(ruCode) {
   }
 }
 
+function getRuLink(ruCode) {
+  switch (ruCode) {
+    case "BOT": {
+      return "https://pra.ufpr.br/ru/cardapio-ru-jardim-botanico/";
+    }
+    case "POL": {
+      return "POLITÉCNICO";
+    }
+  }
+}
+
 const formatMeals = (jsonData) => {
   const iconsMap = {
     "Simbolo-vegano-300x300": "🌱",
@@ -37,6 +48,7 @@ const formatMeals = (jsonData) => {
   let formattedOutput = "";
 
   const title = getRuName(jsonData.ruCode);
+  const link = getRuLink(jsonData.ruCode);
 
   if (title) {
     formattedOutput += `*CARDÁPIO RU ${title} - ${dayOfWeek} - ${formattedDate}*\n\n`;
@@ -60,6 +72,7 @@ const formatMeals = (jsonData) => {
   formattedOutput += "⚠️ - Contém produto(s) alergênico(s)\n";
   formattedOutput += "🍯 - Contém mel\n";
   formattedOutput += "🌶️ - Contém pimenta\n";
+  formattedOutput += `\n_Cardápio retirado de forma automatizada do site oficial do restaurante universitário, essa mensagem e esse grupo não possuem relação com a universidade ou com o restaurante universitário_ \n\n${link}`;
 
   return formattedOutput;
 };
