@@ -7,8 +7,16 @@ phases:
 
   build:
     commands:
+      - echo "Installing dependencies..."
       - npm install
-      - zip -r lambda.zip index.js mongoAuthState.js helpers.js node_modules
+      - echo "Zipping deployment package..."
+      - zip -r ru-menu-whatsapp index.js mongoAuthState.js helpers.js node_modules
+
+  post_build:
+    commands:
+      - echo "Updating Lambda Function..."
+      - aws lambda update-function-code --function-name ru-menu-whatsapp --zip-file fileb://ru-menu-whatsapp.zip --region sa-east-1
+      - echo "Finished buildspec process"
 
 artifacts:
-  files: lambda.zip
+  files: ru-menu-whatsapp
