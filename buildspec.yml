@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+
+  build:
+    commands:
+      - npm install
+      - zip -r lambda.zip index.js mongoAuthState.js helpers.js node_modules
+
+artifacts:
+  files: lambda.zip

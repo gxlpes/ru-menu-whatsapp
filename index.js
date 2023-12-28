@@ -31,6 +31,8 @@ exports.handler = async (event) => {
   let mongoURL = process.env.MONGO_URL;
   let contactNumbers = process.env.CONTACT_NUMBER.split(",");
 
+  console.log(event.responsePayload);
+
   try {
     console.log("Trying to connect to MongoDB");
     const mongoClient = new MongoClient(mongoURL, {
@@ -74,7 +76,7 @@ exports.handler = async (event) => {
 
     sock.ev.on("creds.update", saveCreds);
 
-    const { menuId, sortId, date, meals, ruCode, served } = event;
+    const { menuId, sortId, date, meals, ruCode, served } = event.responsePayload;
     if (!menuId || !sortId || !date || !meals || !ruCode || !served) {
       return {
         statusCode: 400,
@@ -82,7 +84,9 @@ exports.handler = async (event) => {
       };
     }
 
-    const message = formatMeals(event);
+    console.log(event);
+
+    const message = formatMeals(event.responsePayload);
 
     for (const contactNumber of contactNumbers) {
       try {
