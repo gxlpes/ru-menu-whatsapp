@@ -52,8 +52,7 @@ exports.handler = async (event) => {
       printQRInTerminal: true,
       auth: {
         creds: state.creds,
-        /** caching makes the store faster to send/recv messages */
-        keys: makeCacheableSignalKeyStore(state.keys, logger),
+        keys: makeCacheableSignalKeyStore(state.keys),
       },
       getMessage,
     });
@@ -128,7 +127,6 @@ exports.handler = async (event) => {
       return msg?.message || undefined;
     }
 
-    // only if store is present
     return proto.Message.fromObject({});
   }
 };
