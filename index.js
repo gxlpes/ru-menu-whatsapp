@@ -1,4 +1,4 @@
-const { DisconnectReason } = require("@whiskeysockets/baileys");
+const { DisconnectReason, makeCacheableSignalKeyStore } = require("@whiskeysockets/baileys");
 const useMongoDBAuthState = require("./mongoAuthState");
 const makeWASocket = require("@whiskeysockets/baileys").default;
 const { MongoClient } = require("mongodb");
@@ -14,17 +14,16 @@ const connectionLogic = async (sock) => {
       console.log(`Trying to reconnect, attempt ${retries + 1}`);
       await sock.connect();
       console.log("Reconnected successfully");
-      return; // Return if reconnection is successful
+      return;
     } catch (error) {
       console.error("Reconnection attempt failed:", error);
       retries++;
-      // You might want to introduce a delay between reconnection attempts
       await new Promise((resolve) => setTimeout(resolve, 5000));
     }
   }
 
   console.error("Max reconnection attempts reached. Exiting.");
-  process.exit(); // Exit the process if max retries are reached
+  process.exit();
 };
 
 exports.handler = async (event) => {
@@ -51,7 +50,12 @@ exports.handler = async (event) => {
     const { state, saveCreds } = await useMongoDBAuthState(collection);
     const sock = makeWASocket({
       printQRInTerminal: true,
-      auth: state,
+      auth: {
+        creds: state.creds,
+        /** caching makes the store faster to send/recv messages */
+        keys: makeCacheableSignalKeyStore(state.keys, logger),
+      },
+      getMessage,
     });
 
     sock.ev.on("connection.update", async (update) => {
@@ -116,5 +120,15 @@ exports.handler = async (event) => {
       statusCode: 500,
       body: JSON.stringify({ error: "Internal server error." }),
     };
+  }
+
+  async function getMessage(key) {
+    if (store) {
+      const msg = await store.loadMessage(key.remoteJid, key.id);
+      return msg?.message || undefined;
+    }
+
+    // only if store is present
+    return proto.Message.fromObject({});
   }
 };
