@@ -5,6 +5,11 @@ const { MongoClient } = require("mongodb");
 const { formatMeals } = require("./helpers");
 require("dotenv").config();
 
+import MAIN_LOGGER from "./logger";
+
+const logger = MAIN_LOGGER.child({});
+logger.level = "trace";
+
 const connectionLogic = async (sock) => {
   const maxRetries = 5;
   let retries = 0;
@@ -52,7 +57,7 @@ exports.handler = async (event) => {
       printQRInTerminal: true,
       auth: {
         creds: state.creds,
-        keys: makeCacheableSignalKeyStore(state.keys),
+        keys: makeCacheableSignalKeyStore(state.keys, logger),
       },
       getMessage,
     });
