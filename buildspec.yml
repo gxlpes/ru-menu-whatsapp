@@ -10,7 +10,7 @@ phases:
       - echo "Installing dependencies..."
       - npm install
       - echo "Zipping deployment package..."
-      - zip -r ru-menu-whatsapp.zip index.js mongoAuthState.js helpers.js node_modules
+      - zip -r ru-menu-whatsapp.zip index.js mongoAuthState.js logger.js helpers.js node_modules
 
   post_build:
     commands:
