@@ -1,4 +1,4 @@
-const { DisconnectReason, makeCacheableSignalKeyStore } = require("@whiskeysockets/baileys");
+const { DisconnectReason, makeCacheableSignalKeyStore, makeInMemoryStore, proto } = require("@whiskeysockets/baileys");
 const useMongoDBAuthState = require("./mongoAuthState");
 const makeWASocket = require("@whiskeysockets/baileys").default;
 const { MongoClient } = require("mongodb");
@@ -9,6 +9,8 @@ const MAIN_LOGGER = require("./logger.js");
 
 const logger = MAIN_LOGGER;
 logger.level = "trace";
+
+const store = makeInMemoryStore({ logger });
 
 const connectionLogic = async (sock) => {
   const maxRetries = 5;
@@ -60,7 +62,18 @@ exports.handler = async (event) => {
         keys: makeCacheableSignalKeyStore(state.keys, logger),
       },
       getMessage,
+      generateHighQualityLinkPreview: true,
+      msgRetryCounterCache,
     });
+
+    async function getMessage(key) {
+      if (store) {
+        const msg = await store.loadMessage(key.remoteJid, key.id);
+        return msg?.message || undefined;
+      }
+
+      return proto.Message.fromObject({});
+    }
 
     sock.ev.on("connection.update", async (update) => {
       const { connection, lastDisconnect, qr } = update || {};
@@ -124,14 +137,5 @@ exports.handler = async (event) => {
       statusCode: 500,
       body: JSON.stringify({ error: "Internal server error." }),
     };
-  }
-
-  async function getMessage(key) {
-    if (store) {
-      const msg = await store.loadMessage(key.remoteJid, key.id);
-      return msg?.message || undefined;
-    }
-
-    return proto.Message.fromObject({});
   }
 };
