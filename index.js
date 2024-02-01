@@ -37,7 +37,7 @@ exports.handler = async (event) => {
   let mongoURL = process.env.MONGO_URL;
   let contactNumbers = process.env.CONTACT_NUMBER.split(",");
 
-  console.log(event.responsePayload);
+  console.log(event);
 
   try {
     console.log("Trying to connect to MongoDB");
