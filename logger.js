@@ -1,3 +1,3 @@
-import P from "pino";
+const P = require("pino");
 
-export default P({ timestamp: () => `,"time":"${new Date().toJSON()}"` });
+module.exports = P({ timestamp: () => `,"time":"${new Date().toJSON()}"` });

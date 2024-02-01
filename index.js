@@ -5,9 +5,9 @@ const { MongoClient } = require("mongodb");
 const { formatMeals } = require("./helpers");
 require("dotenv").config();
 
-const MAIN_LOGGER = require("./logger").default;
+const MAIN_LOGGER = require("./logger.js");
 
-const logger = MAIN_LOGGER.child({});
+const logger = MAIN_LOGGER;
 logger.level = "trace";
 
 const connectionLogic = async (sock) => {
