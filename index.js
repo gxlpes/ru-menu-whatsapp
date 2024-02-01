@@ -62,8 +62,6 @@ exports.handler = async (event) => {
         keys: makeCacheableSignalKeyStore(state.keys, logger),
       },
       getMessage,
-      generateHighQualityLinkPreview: true,
-      msgRetryCounterCache,
     });
 
     async function getMessage(key) {
