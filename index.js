@@ -5,7 +5,7 @@ const { MongoClient } = require("mongodb");
 const { formatMeals } = require("./helpers");
 require("dotenv").config();
 
-import MAIN_LOGGER from "./logger";
+const MAIN_LOGGER = require("./logger").default;
 
 const logger = MAIN_LOGGER.child({});
 logger.level = "trace";
