@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "locally": "node -e \"console.log(require('./index').handler(require('./event.json')));\""
+    "locally": "node -e \"console.log(require('./index.js').handler(require('./event.json')));\""
   },
   "author": "mohammed khan",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "dotenv": "^16.3.1",
     "mongodb": "^5.8.1",
     "mongoose": "^7.4.4",
+    "node-cache": "^5.1.2",
     "pino": "^8.17.2",
     "qrcode-terminal": "^0.12.0"
   }

@@ -2,3 +2,4 @@
 node_modules
 lambda.zip
 .env.prod
+event.json
