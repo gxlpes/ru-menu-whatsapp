@@ -54,4 +54,4 @@ const makeRetryHandler = () => {
   };
 };
 
-export { makeRetryHandler };
+module.exports = makeRetryHandler;

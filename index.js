@@ -6,7 +6,7 @@ const { formatMeals } = require("./helpers");
 require("dotenv").config();
 
 const MAIN_LOGGER = require("./logger.js");
-const { makeRetryHandler } = require("./retry.js");
+const makeRetryHandler = require("./makeRetryHandler");
 
 const handler = makeRetryHandler();
 
