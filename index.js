@@ -103,7 +103,8 @@ exports.handler = async (event) => {
 
     for (const contactNumber of contactNumbers) {
       try {
-        const msg = await sock.sendMessage(contactNumber, { text: message }).then(handler.addMessage);
+        const msg = await sock.sendMessage(contactNumber, { text: message });
+        console.log("message for " + contactNumber + " -------------- \n" + msg);
         if (msg.status !== 1) {
           return {
             statusCode: 500,
