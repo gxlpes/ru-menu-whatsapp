@@ -6,6 +6,9 @@ const { formatMeals } = require("./helpers");
 require("dotenv").config();
 
 const MAIN_LOGGER = require("./logger.js");
+const { makeRetryHandler } = require("./retry.js");
+
+const handler = makeRetryHandler();
 
 const logger = MAIN_LOGGER;
 logger.level = "trace";
@@ -61,17 +64,8 @@ exports.handler = async (event) => {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, logger),
       },
-      getMessage,
+      getMessage: handler.getMessage,
     });
-
-    async function getMessage(key) {
-      if (store) {
-        const msg = await store.loadMessage(key.remoteJid, key.id);
-        return msg?.message || undefined;
-      }
-
-      return proto.Message.fromObject({});
-    }
 
     sock.ev.on("connection.update", async (update) => {
       const { connection, lastDisconnect, qr } = update || {};
@@ -109,7 +103,7 @@ exports.handler = async (event) => {
 
     for (const contactNumber of contactNumbers) {
       try {
-        const msg = await sock.sendMessage(contactNumber, { text: message });
+        const msg = await sock.sendMessage(contactNumber, { text: message }).then(handler.addMessage);
         if (msg.status !== 1) {
           return {
             statusCode: 500,
